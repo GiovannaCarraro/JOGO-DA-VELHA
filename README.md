@@ -34,4 +34,4 @@ Siga o passo a passo abaixo para rodar o jogo na sua máquina:
 
 1. **Clonar o repositório:**
    ```bash
-   git clone https://github.com/seu-usuario/nome-do-repositorio.git
+   git clone https://github.com/GiovannaCarraro/JOGO-DA-VELHA.git
