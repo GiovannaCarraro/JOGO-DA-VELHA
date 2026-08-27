@@ -1,61 +1,85 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Board from '../Board/Board';
+import calculateWinner from '../Calculate/Calculate';
+import styles from './Game.module.css';
 
 function Game() {
-  const [history, setHistory] = useState([
-    Array(9).fill(null)
-  ]);
+  const [squares, setSquares] = useState(Array(9).fill(null));
+  const [xIsNext, setXIsNext] = useState(true);
 
-  const [currentMove, setCurrentMove] = useState(0);
+  const [xTime, setXTime] = useState(30);
+  const [oTime, setOTime] = useState(30);
 
-  const xIsNext = currentMove % 2 === 0;
-  const currentSquares = history[currentMove];
+  const [winner, setWinner] = useState(null);
 
-  function handlePlay(nextSquares) {
-    const nextHistory = [
-      ...history.slice(0, currentMove + 1),
-      nextSquares,
-    ];
-
-    setHistory(nextHistory);
-    setCurrentMove(nextHistory.length - 1);
-  }
-
-  function jumpTo(nextMove) {
-    setCurrentMove(nextMove);
-  }
-
-  const moves = history.map((squares, move) => {
-    let description;
-
-    if (move > 0) {
-      description = 'Go to move #' + move;
-    } else {
-      description = 'Go to game start';
+  useEffect(() => {
+    if (winner) {
+      return;
     }
 
-    return (
-      <li key={move}>
-        <button onClick={() => jumpTo(move)}>
-          {description}
-        </button>
-      </li>
-    );
-  });
+    const timer = setInterval(() => {
+      if (xIsNext) {
+        setXTime(time => {
+          if (time <= 1) {
+            setWinner('O');
+            return 0;
+          }
+          return time - 1;
+        });
+      } else {
+        setOTime(time => {
+          if (time <= 1) {
+            setWinner('X');
+            return 0;
+          }
+          return time - 1;
+        });
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [xIsNext, winner]);
+
+  function handlePlay(nextSquares) {
+    setSquares(nextSquares);
+
+    const gameWinner = calculateWinner(nextSquares);
+
+    if (gameWinner) {
+      setWinner(gameWinner);
+      return;
+    }
+
+    setXIsNext(!xIsNext);
+  }
 
   return (
-    <div className="game">
-      <div className="game-board">
-        <Board
-          xIsNext={xIsNext}
-          squares={currentSquares}
-          onPlay={handlePlay}
-        />
+    <div className={styles.game}>
+
+      <div className={styles.timers}>
+
+        <div className={styles.timer}>
+          <h3>Jogador X</h3>
+          <p>{xTime}s</p>
+        </div>
+
+        <div className={styles.timer}>
+          <h3>Jogador O</h3>
+          <p>{oTime}s</p>
+        </div>
+
       </div>
 
-      <div className="game-info">
-        <ol>{moves}</ol>
-      </div>
+      {winner ? (
+        <h2>Jogador {winner} ganhou!</h2>
+      ) : (
+        <Board
+          xIsNext={xIsNext}
+          squares={squares}
+          onPlay={handlePlay}
+        />
+      )}
+
     </div>
   );
 }
