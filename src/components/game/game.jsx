@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Board from '../board/board';
+import Board from '../Board/Board';
 import calculateWinner from '../Calculate/Calculate';
 import styles from './game.module.css';
 

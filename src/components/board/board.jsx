@@ -1,4 +1,4 @@
-import Square from '../square/square';
+import Square from '../Square/Square';
 import calculateWinner from '../Calculate/Calculate';
 import styles from './board.module.css';
 
