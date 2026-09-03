@@ -1,1 +1,27 @@
+.backButton {
+  align-self: flex-start;
 
+  margin-bottom: 15px;
+
+  padding: 10px 20px;
+
+  background-color: var(--cor-card);
+  color: var(--cor-jogador-x);
+
+  border: 2px solid var(--cor-borda);
+  border-radius: 10px;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.backButton:hover {
+  background-color: var(--cor-jogador-x);
+  color: white;
+
+  transform: translateX(-3px);
+}

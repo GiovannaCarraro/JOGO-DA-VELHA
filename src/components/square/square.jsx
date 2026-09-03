@@ -1,4 +1,5 @@
-import styles from './square.module.css';
+import styles from './Square.module.css';
+
 
 function Square({ value, onSquareClick }) {
 

@@ -1,0 +1,19 @@
+:root {
+  --cor-fundo: #fff5f8;
+  --cor-card: #ffffff;
+  --cor-jogador-x: #ba68c8;
+  --cor-jogador-o: #f06292;
+  --cor-borda: #f8bbd0;
+  --cor-sombra: #f48fb140;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  background-color: var(--cor-fundo);
+}

@@ -1,0 +1,21 @@
+.status {
+  margin-bottom: 20px;
+
+  text-align: center;
+
+  color: var(--cor-jogador-x);
+
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.boardRow {
+  display: flex;
+  gap: 8px;
+
+  margin-bottom: 8px;
+}
+
+.boardRow:last-child {
+  margin-bottom: 0;
+}

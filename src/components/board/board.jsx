@@ -1,6 +1,6 @@
 import Square from '../Square/Square';
 import calculateWinner from '../Calculate/Calculate';
-import styles from './board.module.css';
+import styles from './Board.module.css';
 
 function Board({ xIsNext, squares, onPlay }) {
 

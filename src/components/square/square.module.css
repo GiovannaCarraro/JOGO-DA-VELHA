@@ -1,0 +1,31 @@
+.square {
+  width: 90px;
+  height: 90px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--cor-card);
+
+  border: 3px solid var(--cor-borda);
+  border-radius: 15px;
+
+  font-size: 42px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  box-shadow: 0 4px 10px var(--cor-sombra);
+
+  transition: all 0.2s ease;
+}
+
+.square:hover {
+  background-color: var(--cor-fundo);
+  transform: scale(1.05);
+}
+
+.square:active {
+  transform: scale(0.95);
+}

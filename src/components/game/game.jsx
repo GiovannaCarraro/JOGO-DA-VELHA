@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import Board from '../Board/Board';
 import calculateWinner from '../Calculate/Calculate';
-import styles from './game.module.css';
+import styles from './Game.module.css';
 
 function Game() {
+
   const [squares, setSquares] = useState(Array(9).fill(null));
 
   const [xIsNext, setXIsNext] = useState(true);
@@ -20,6 +21,7 @@ function Game() {
   const [gameTime, setGameTime] = useState(null);
 
 
+  // CONTROLE DO TEMPO
   useEffect(() => {
 
     if (!started || winner || gameTime === 'infinite') {
@@ -61,6 +63,7 @@ function Game() {
   }, [started, xIsNext, winner, gameTime]);
 
 
+  // FAZ A JOGADA
   function handlePlay(nextSquares) {
 
     setSquares(nextSquares);
@@ -72,15 +75,18 @@ function Game() {
       return;
     }
 
+    // VERIFICA SE DEU VELHA
     if (nextSquares.every(square => square !== null)) {
       setWinner('velha');
       return;
     }
 
+    // TROCA A VEZ
     setXIsNext(!xIsNext);
   }
 
 
+  // COMEÇA O JOGO
   function startGame() {
 
     setStarted(true);
@@ -103,8 +109,33 @@ function Game() {
   }
 
 
+  // VOLTA PARA A TELA INICIAL
+  function voltar() {
+
+    setStarted(false);
+
+    setSquares(Array(9).fill(null));
+
+    setWinner(null);
+
+    setPlayerSymbol(null);
+
+    setGameTime(null);
+
+    setXIsNext(true);
+
+    setXTime(30);
+
+    setOTime(30);
+  }
+
+
   return (
+
     <div className={styles.game}>
+
+
+      {/* TELA DE CONFIGURAÇÃO */}
 
       {!started && (
 
@@ -114,13 +145,18 @@ function Game() {
 
           <p>Jogador 1</p>
 
+
           <div className={styles.symbols}>
 
-            <button onClick={() => setPlayerSymbol('X')}>
+            <button
+              onClick={() => setPlayerSymbol('X')}
+            >
               X
             </button>
 
-            <button onClick={() => setPlayerSymbol('O')}>
+            <button
+              onClick={() => setPlayerSymbol('O')}
+            >
               O
             </button>
 
@@ -132,11 +168,13 @@ function Game() {
             <>
 
               <p>
-                Jogador 1 escolheu: <strong>{playerSymbol}</strong>
+                Jogador 1 escolheu:{' '}
+                <strong>{playerSymbol}</strong>
               </p>
 
               <p>
-                Jogador 2 será: <strong>
+                Jogador 2 será:{' '}
+                <strong>
                   {playerSymbol === 'X' ? 'O' : 'X'}
                 </strong>
               </p>
@@ -144,17 +182,24 @@ function Game() {
 
               <h2>Escolha o tempo</h2>
 
+
               <div className={styles.times}>
 
-                <button onClick={() => setGameTime(30)}>
+                <button
+                  onClick={() => setGameTime(30)}
+                >
                   30 segundos
                 </button>
 
-                <button onClick={() => setGameTime(60)}>
+                <button
+                  onClick={() => setGameTime(60)}
+                >
                   60 segundos
                 </button>
 
-                <button onClick={() => setGameTime('infinite')}>
+                <button
+                  onClick={() => setGameTime('infinite')}
+                >
                   ∞ Infinito
                 </button>
 
@@ -181,6 +226,22 @@ function Game() {
       )}
 
 
+      {/* BOTÃO VOLTAR */}
+
+      {started && (
+
+        <button
+          className={styles.backButton}
+          onClick={voltar}
+        >
+          ← Voltar
+        </button>
+
+      )}
+
+
+      {/* CRONÔMETROS */}
+
       <div className={styles.timers}>
 
         <div className={styles.timer}>
@@ -192,12 +253,14 @@ function Game() {
           </p>
 
           <span>
+
             {gameTime === 'infinite'
               ? '∞'
               : playerSymbol === 'X'
                 ? xTime
                 : oTime
             }s
+
           </span>
 
         </div>
@@ -212,18 +275,22 @@ function Game() {
           </p>
 
           <span>
+
             {gameTime === 'infinite'
               ? '∞'
               : playerSymbol === 'X'
                 ? oTime
                 : xTime
             }s
+
           </span>
 
         </div>
 
       </div>
 
+
+      {/* RESULTADO OU TABULEIRO */}
 
       {winner ? (
 
