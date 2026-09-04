@@ -75,11 +75,13 @@ function Game() {
       return;
     }
 
+
     // VERIFICA SE DEU VELHA
     if (nextSquares.every(square => square !== null)) {
       setWinner('velha');
       return;
     }
+
 
     // TROCA A VEZ
     setXIsNext(!xIsNext);
@@ -97,10 +99,12 @@ function Game() {
       setXIsNext(false);
     }
 
+
     if (gameTime === 30) {
       setXTime(30);
       setOTime(30);
     }
+
 
     if (gameTime === 60) {
       setXTime(60);
@@ -109,7 +113,7 @@ function Game() {
   }
 
 
-  // VOLTA PARA A TELA INICIAL
+  // VOLTA PARA A TELA DE CONFIGURAÇÃO
   function voltar() {
 
     setStarted(false);
@@ -154,6 +158,7 @@ function Game() {
               X
             </button>
 
+
             <button
               onClick={() => setPlayerSymbol('O')}
             >
@@ -171,6 +176,7 @@ function Game() {
                 Jogador 1 escolheu:{' '}
                 <strong>{playerSymbol}</strong>
               </p>
+
 
               <p>
                 Jogador 2 será:{' '}
@@ -191,11 +197,13 @@ function Game() {
                   30 segundos
                 </button>
 
+
                 <button
                   onClick={() => setGameTime(60)}
                 >
                   60 segundos
                 </button>
+
 
                 <button
                   onClick={() => setGameTime('infinite')}
@@ -205,6 +213,24 @@ function Game() {
 
               </div>
 
+
+              {/* MOSTRA O TEMPO ESCOLHIDO */}
+
+              {gameTime && (
+
+                <p>
+                  Tempo escolhido:{' '}
+                  <strong>
+                    {gameTime === 'infinite'
+                      ? 'Infinito'
+                      : `${gameTime} segundos`}
+                  </strong>
+                </p>
+
+              )}
+
+
+              {/* BOTÃO COMEÇAR */}
 
               {gameTime && (
 
@@ -242,52 +268,61 @@ function Game() {
 
       {/* CRONÔMETROS */}
 
-      <div className={styles.timers}>
+      {started && (
 
-        <div className={styles.timer}>
+        <div className={styles.timers}>
 
-          <h3>Jogador 1</h3>
 
-          <p>
-            {playerSymbol === 'X' ? 'X' : 'O'}
-          </p>
+          {/* JOGADOR 1 */}
 
-          <span>
+          <div className={styles.timer}>
 
-            {gameTime === 'infinite'
-              ? '∞'
-              : playerSymbol === 'X'
-                ? xTime
-                : oTime
-            }s
+            <h3>Jogador 1</h3>
 
-          </span>
+            <p>
+              {playerSymbol === 'X' ? 'X' : 'O'}
+            </p>
+
+            <span>
+
+              {gameTime === 'infinite'
+                ? '∞'
+                : playerSymbol === 'X'
+                  ? xTime
+                  : oTime
+              }s
+
+            </span>
+
+          </div>
+
+
+          {/* JOGADOR 2 */}
+
+          <div className={styles.timer}>
+
+            <h3>Jogador 2</h3>
+
+            <p>
+              {playerSymbol === 'X' ? 'O' : 'X'}
+            </p>
+
+            <span>
+
+              {gameTime === 'infinite'
+                ? '∞'
+                : playerSymbol === 'X'
+                  ? oTime
+                  : xTime
+              }s
+
+            </span>
+
+          </div>
 
         </div>
 
-
-        <div className={styles.timer}>
-
-          <h3>Jogador 2</h3>
-
-          <p>
-            {playerSymbol === 'X' ? 'O' : 'X'}
-          </p>
-
-          <span>
-
-            {gameTime === 'infinite'
-              ? '∞'
-              : playerSymbol === 'X'
-                ? oTime
-                : xTime
-            }s
-
-          </span>
-
-        </div>
-
-      </div>
+      )}
 
 
       {/* RESULTADO OU TABULEIRO */}

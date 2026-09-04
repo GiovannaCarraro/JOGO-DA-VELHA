@@ -9,6 +9,7 @@
   background-color: var(--cor-card);
 
   border: 3px solid var(--cor-borda);
+
   border-radius: 15px;
 
   font-size: 42px;
@@ -23,6 +24,7 @@
 
 .square:hover {
   background-color: var(--cor-fundo);
+
   transform: scale(1.05);
 }
 

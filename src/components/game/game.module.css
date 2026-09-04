@@ -1,3 +1,155 @@
+.game {
+  min-height: 100vh;
+  width: 100%;
+  padding: 40px 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: var(--cor-fundo);
+  font-family: Arial, sans-serif;
+}
+
+/* TELA INICIAL */
+
+.startArea {
+  width: 500px;
+  max-width: 90%;
+
+  padding: 30px;
+
+  background-color: var(--cor-card);
+
+  border: 2px solid var(--cor-borda);
+  border-radius: 20px;
+
+  text-align: center;
+
+  box-shadow: 0 8px 20px var(--cor-sombra);
+}
+
+.startArea h2 {
+  color: var(--cor-jogador-x);
+  margin-bottom: 15px;
+}
+
+.startArea p {
+  color: #555;
+  font-size: 17px;
+}
+
+
+/* ESCOLHA X OU O */
+
+.symbols {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+
+  margin: 20px 0;
+}
+
+.symbols button {
+  width: 80px;
+  height: 60px;
+
+  border: 2px solid var(--cor-borda);
+  border-radius: 12px;
+
+  background-color: var(--cor-card);
+
+  font-size: 30px;
+  font-weight: bold;
+
+  color: var(--cor-jogador-x);
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.symbols button:last-child {
+  color: var(--cor-jogador-o);
+}
+
+.symbols button:hover {
+  transform: scale(1.08);
+  background-color: var(--cor-fundo);
+}
+
+
+/* ESCOLHA DO TEMPO */
+
+.times {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  margin: 20px 0;
+}
+
+.times button {
+  padding: 10px 15px;
+
+  border: 2px solid var(--cor-borda);
+  border-radius: 10px;
+
+  background-color: var(--cor-card);
+
+  color: #555;
+
+  font-size: 15px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.times button:hover {
+  background-color: var(--cor-fundo);
+
+  border-color: var(--cor-jogador-x);
+
+  color: var(--cor-jogador-x);
+
+  transform: translateY(-2px);
+}
+
+
+/* BOTÃO COMEÇAR */
+
+.startButton {
+  padding: 12px 35px;
+
+  border: none;
+  border-radius: 12px;
+
+  background-color: var(--cor-jogador-x);
+
+  color: white;
+
+  font-size: 18px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  box-shadow: 0 5px 12px var(--cor-sombra);
+
+  transition: 0.2s;
+}
+
+.startButton:hover {
+  background-color: var(--cor-jogador-o);
+
+  transform: scale(1.05);
+}
+
+
+/* BOTÃO VOLTAR */
+
 .backButton {
   align-self: flex-start;
 
@@ -6,9 +158,11 @@
   padding: 10px 20px;
 
   background-color: var(--cor-card);
+
   color: var(--cor-jogador-x);
 
   border: 2px solid var(--cor-borda);
+
   border-radius: 10px;
 
   font-size: 16px;
@@ -21,7 +175,99 @@
 
 .backButton:hover {
   background-color: var(--cor-jogador-x);
+
   color: white;
 
   transform: translateX(-3px);
+}
+
+
+/* CRONÔMETROS */
+
+.timers {
+  display: flex;
+  justify-content: center;
+
+  gap: 25px;
+
+  margin: 25px 0;
+}
+
+.timer {
+  width: 160px;
+
+  padding: 15px;
+
+  background-color: var(--cor-card);
+
+  border: 2px solid var(--cor-borda);
+
+  border-radius: 15px;
+
+  text-align: center;
+
+  box-shadow: 0 5px 15px var(--cor-sombra);
+}
+
+.timer h3 {
+  margin: 0 0 8px;
+
+  color: #555;
+}
+
+.timer p {
+  margin: 5px;
+
+  font-size: 28px;
+  font-weight: bold;
+
+  color: var(--cor-jogador-x);
+}
+
+.timer span {
+  display: block;
+
+  font-size: 22px;
+  font-weight: bold;
+
+  color: var(--cor-jogador-o);
+}
+
+
+/* ÁREA DO TABULEIRO */
+
+.gameBoard {
+  padding: 25px;
+
+  background-color: var(--cor-card);
+
+  border: 2px solid var(--cor-borda);
+
+  border-radius: 20px;
+
+  box-shadow: 0 8px 20px var(--cor-sombra);
+}
+
+
+/* RESULTADO */
+
+.winner {
+  margin: 25px;
+
+  padding: 18px 30px;
+
+  background-color: var(--cor-card);
+
+  border: 3px solid var(--cor-jogador-x);
+
+  border-radius: 15px;
+
+  color: var(--cor-jogador-x);
+
+  font-size: 26px;
+  font-weight: bold;
+
+  box-shadow: 0 6px 15px var(--cor-sombra);
+
+  text-align: center;
 }
